@@ -1,0 +1,19 @@
+.container__notfound{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+
+.textMain{
+    color: #fff;
+    font-size: 50px;
+}
+
+.textPage{
+    font-size: 18px; 
+    color: #fff;
+}

@@ -1,0 +1,27 @@
+
+.container__button{
+    margin-top: 15px;
+    margin-left: 100px;
+
+}
+
+.container__position{
+    margin-right: 15px;
+    padding: 10px 10px;
+    color: white;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color:blueviolet;
+    border:blueviolet 2px solid;
+    transition: opacity 0.3s ease;
+   border-radius: 6px;
+}
+
+
+.container__position:hover{
+    opacity: 1;
+}
+.container__position:global(.active)
+{
+   background-color: red;
+}

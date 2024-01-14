@@ -1,0 +1,33 @@
+.container__link{
+   margin-left: 80px;
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.value__link {
+    text-align: center;
+    color: red;
+    text-decoration: none;
+    font-weight: 800;
+    margin:  10px 10px;
+    min-width: 70px;
+    padding: 5px 5px;
+    border: 2px solid transparent;
+
+}
+
+/* .value__link:focus,
+.value__link:target
+{
+    color: blueviolet;
+     text-decoration: blueviolet  underline;
+     border:blueviolet 2px solid;
+} */
+
+
+.value__link:global(.active)
+{
+    color: blueviolet;
+     text-decoration: blueviolet  underline;
+     border:blueviolet 2px solid;
+}
