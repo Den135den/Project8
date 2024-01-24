@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2/promise'); // Use the promise version
-const fs = require('fs')
+const fs = require('fs');
+const { error } = require('console');
 
 
 app.use(cors());
@@ -22,7 +23,7 @@ if(connection){
 
 
 
-const img3 = fs.readFileSync('D:/img/users2/img3.jpg');
+// const img3 = fs.readFileSync('D:/img/users2/img3.jpg');
 
 // //Assuming 'users' is the name of your table, and 'id' is the column to identify the user
 // connection.query('UPDATE users SET img = ?  WHERE id = ?', [img, 3], (error, results, fields) => {
@@ -39,36 +40,172 @@ const img3 = fs.readFileSync('D:/img/users2/img3.jpg');
 //   }
 // );
 
-app.get('/people', async (req, res) => {
+// app.get('/people', async (req, res) => {
+//     try {
+//         const userId = req.query.id;
+
+//         let rows;
+
+//         if (!userId) {
+//             res.status(400).json({ error: 'Missing user ID parameter' });
+//             return;
+//         } else if (userId === '1') {
+//             [rows] = await connection.execute('SELECT * FROM users');
+//         } else if (userId === '2') {
+//             [rows] = await connection.execute('SELECT * FROM users2');
+//         } else {
+//             res.status(400).json({ error: 'Invalid user ID parameter' });
+//             return;
+//         }
+
+//         if (!rows || !rows.length) {
+//             res.status(404).json({ error: 'Data not found' });
+//             return;
+//         }
+
+//         res.status(200).json(rows);
+//         console.log('Combined Rows:', rows);
+//     } catch (error) {
+//         console.error('Error:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
+
+
+
+app.get('/people/:id1', async function (req, res) {
+    let id = req.params.id1;
+    let rows;
+    
     try {
-        const userId = req.query.id;
-
-        let rows;
-
-        if (!userId) {
-            res.status(400).json({ error: 'Missing user ID parameter' });
-            return;
-        } else if (userId === '1') {
-            [rows] = await connection.execute('SELECT * FROM users');
-        } else if (userId === '2') {
-            [rows] = await connection.execute('SELECT * FROM users2');
-        } else {
-            res.status(400).json({ error: 'Invalid user ID parameter' });
-            return;
-        }
-
-        if (!rows || !rows.length) {
-            res.status(404).json({ error: 'Data not found' });
-            return;
-        }
-
+      if (id ==='1') {
+        [rows] = await connection.query(`SELECT * FROM users`);
+      } else if (id ==='2') {
+        [rows] = await connection.query(`SELECT * FROM users2`);
+      } else {
+        res.status(404).json('Error page');
+        return; // Added return to exit the function if an invalid id is provided
+      }
+  
+      if (rows && rows.length > 0) {
         res.status(200).json(rows);
-        console.log('Combined Rows:', rows);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+      } else {
+        res.status(404).json('No data found');
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
     }
-});
+  });
+  
+
+  app.get('/people/:id1/:id2', async function (req, res) {
+    let id1 = req.params.id1;
+    let id2 = req.params.id2;
+    let rows;
+    
+    try {
+
+    let idData1 = ['1', '2'];
+
+    let idData2 = Array.from({ length: 12 }, (_, i) => String(i + 1));
+
+
+    let coordinates = {};
+    
+    for (let valueID1 of idData1) {
+      for (let valueID2 of idData2) {
+        // значення
+        let query;
+    
+        if (valueID1 === '1') {
+          query = 'SELECT * FROM users WHERE id = ?';
+        } else if (valueID1 === '2') {
+          query = 'SELECT * FROM users2 WHERE id = ?';
+        } else {
+          res.status(404).json('User data is not found');
+          return;
+        }
+    
+        // ключі
+        let key = `${valueID1}-${valueID2}`;
+    
+        coordinates[key] = query;
+      }
+    }
+    
+    // Припускаючи, що id1 та id2 визначені десь
+    const query = coordinates[`${id1}-${id2}`];
+    
+    if (!query) {
+      res.status(404).json('Користувача не знайдено');
+      return;
+    }
+    
+    const [rows] = await connection.query(query, [id2]);
+    
+
+      if (rows && rows.length > 0) {
+        res.status(200).json(rows);
+      } else {
+        res.status(404).json('No data found');
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  });
+
+
+
+
+// app.get('/people/:id', async function(req, res) {
+//     try {
+//         const userId = req.query.id;
+//         const id = req.params.id;
+//         let rows;
+
+//         if (userId === '2') {
+//             [rows] = await connection.query(`SELECT * FROM users2 WHERE id = ${id}`);
+//         }
+//         if (userId === '1') {
+//             [rows] = await connection.query(`SELECT * FROM users WHERE id = ${id}`);
+//         }
+
+//         if (rows && rows.length > 0) {
+//             console.log(rows);
+//             res.status(200).json(rows);
+//         } else {
+//             res.status(404).json({ error: 'Користувача не знайдено' });
+//         }
+//     } catch (error) {
+//         console.error('Помилка:', error);
+//         res.status(500).json({ error: 'Внутрішня помилка сервера' });
+//     }
+// });
+
+
+
+
+// app.get('/people/:id', async function(req, res) {
+//     try {
+//         let id = req.params.id;
+//         let [rows] = await connection.query('SELECT * FROM users WHERE id = ?', [id]);
+
+//         if (rows && rows.length > 0) {
+//             console.log(rows);
+//             res.status(200).json(rows);
+//         } else {
+//             res.status(404).json({ error: 'User is not found' });
+//         }
+//     } catch (error) {
+//         console.error('Error retrieving user:', error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
+
+
+
 
 
 // app.get('/people', async (req, res) => {

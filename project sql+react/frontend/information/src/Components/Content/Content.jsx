@@ -2,11 +2,11 @@ import React from "react";
 import style from "./Content.module.css"
 import PropTypes from 'prop-types';
 import ButtonClick from "../ButtonCLick/ButtonClick";
+import { Link } from "react-router-dom";
 
 
 
 function Content(props){
-
 
   return(
     <>
@@ -14,21 +14,22 @@ function Content(props){
 
     {props.data ? (
       <div className={style.container__list}>
-        {props.data.map(({ img, url, name, age, email, history }) => (
+        {props.data.map(({id, img, url, name}) => (
           <div key={props.getID(url)} className={style.card__list}>
-            <a href={url}>
+      
+            <Link to={`/people/${props.id1}/${id}`}>
+              
               <img
                 src={img ? URL.createObjectURL(new Blob([new Uint8Array(img.data)])) : ''}
                 width='350px'
                 alt='img'
                 className={style.img__list}
               />
-              <p>Name: {name}</p>
-              <p>Age: {age}</p>
-              <p>Email: {email}</p>
-              <p>History: {history}</p>
-              <p>{url}</p>
-            </a>
+              <p className={style.textName}>{name}</p>
+              <p className={style.textName}>Детальніше.....</p>
+            </Link>
+
+
           </div>
         ))}
       </div>
@@ -41,7 +42,6 @@ function Content(props){
 
 Content.propTypes ={
   increment:PropTypes.string,
-  decrement:PropTypes.string,
    data: PropTypes.array,
    getID: PropTypes.func,
 }

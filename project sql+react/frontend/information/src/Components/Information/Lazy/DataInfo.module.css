@@ -1,0 +1,17 @@
+.position__text{
+    /* background-color: black; */
+padding-top: 20px;
+padding-bottom: 20px;
+text-align: center;
+
+ margin: 0 auto;
+}
+
+.link__block{
+    text-align: justify;
+    color: darkblue;
+    line-height: 20px;
+    font-weight: 600;
+    line-height: 33px;
+    font-family: 'Courier New', Courier, monospace;
+}

@@ -9,14 +9,24 @@
   }
   
   .card__list{
+   width: 30%;
      margin-top: 45px;
-      padding: 60px 40px;
+     padding-top: 40px;
       margin-right: 30px;
      border-radius: var(--margin-padding);
      background-color: #fff;
      text-align: center;
     
   }
+ 
+
+  .card__list:hover,
+.card__list:hover p {
+  background-color: #000;
+  color: #fff;
+}
+
+
   .card__list a{
      text-decoration: none;
   }
@@ -24,11 +34,14 @@
   .card__list p{
       color: red;
    }
+  
    .card__list p:hover{
-      color: #000;
+      color: blue;
    }
   
   .img__list{
      border-radius: 10px; 
   }
-  
+  .textName{
+   text-align: center;
+  }

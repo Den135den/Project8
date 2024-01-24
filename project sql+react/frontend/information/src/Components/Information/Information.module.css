@@ -1,0 +1,22 @@
+.info__container{
+    display: flex;
+    width: 800px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellow; */
+    margin-left: 90px;
+}
+.img__focus{
+    width: 380px;
+    height: 255px;
+    border-radius: 20px;
+}
+
+
+@media screen and (max-width: 720px) {
+    .info__container{
+        width: 100%;
+        display: flex;
+    }
+}
