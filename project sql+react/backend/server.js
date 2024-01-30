@@ -156,7 +156,39 @@ app.get('/people/:id1', async function (req, res) {
     }
   });
 
+app.post('/sendData', async function(req,res){
 
+  try{
+    const {oldState} = req.body;
+   const request = await connection.query('INSERT INTO users3 (value) VALUES(?)', [ oldState])
+       res.status(200).json(request)
+   
+  }
+
+  catch{
+      res.status(500).json('Data is not fined')
+  }
+    
+
+})
+
+
+
+
+app.get('/getData', async function(req,res){
+
+  try{
+   const [request] = await connection.query('SELECT * FROM users3')
+       res.status(200).json(request)
+   
+  }
+
+  catch{
+      res.status(500).json('Data is not fined')
+  }
+    
+
+})
 
 
 // app.get('/people/:id', async function(req, res) {

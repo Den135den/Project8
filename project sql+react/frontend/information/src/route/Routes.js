@@ -2,6 +2,7 @@ import MainContent from "../Components/MainContent/MainContent";
 import Location from "../Components/Location/Location";
 import NotFound from "../Components/NotFound/NotFound";
 import Information from "../Components/Information/Information";
+import Favourite from "../Components/Favourite/Favourite";
 
 
 
@@ -22,7 +23,11 @@ export const routes = [
     path: '/people/:id1/:id2',
     element: (<Information />)
     },
-
+    {
+    id: 4,
+    path: '/favourite',
+    element: (<Favourite/>)
+    },
     {
     id: 5,
     path: '*',
@@ -41,6 +46,11 @@ export const link = [
         id:2,
         to:'/people/1',
         value:'People',
+    },
+    {
+        id:3,
+        to:'/favourite',
+        value:'Favourite',
     },
   
      

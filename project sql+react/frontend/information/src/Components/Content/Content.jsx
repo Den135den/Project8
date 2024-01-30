@@ -14,7 +14,7 @@ function Content(props){
 
     {props.data ? (
       <div className={style.container__list}>
-        {props.data.map(({id, img, url, name}) => (
+        {props.data.map(({id, img, url, name }) => (
           <div key={props.getID(url)} className={style.card__list}>
       
             <Link to={`/people/${props.id1}/${id}`}>
@@ -42,6 +42,7 @@ function Content(props){
 
 Content.propTypes ={
   increment:PropTypes.string,
+  decrement:PropTypes.string,
    data: PropTypes.array,
    getID: PropTypes.func,
 }
