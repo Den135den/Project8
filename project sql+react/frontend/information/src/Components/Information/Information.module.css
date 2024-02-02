@@ -14,6 +14,15 @@
 }
 
 
+
+.img{
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 195px;
+    left: 446px;
+}
+
 @media screen and (max-width: 720px) {
     .info__container{
         width: 100%;
