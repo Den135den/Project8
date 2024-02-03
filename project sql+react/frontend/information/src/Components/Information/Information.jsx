@@ -94,17 +94,22 @@ function req(url){
                     onClick={() => (isTrue ? removeUser(info)() : addUser(info)())}
                     className={style.img}
                    alt="img"
-                  />
-                   
+                  /> 
 
-
-                  <Suspense  fallback={<Loader/>}>
+                 <Suspense  fallback={<Loader/>}>
                      <DataInfo {...info}/>
                   </Suspense>
-                 </div>
-                
 
-      
+                
+                 </div>
+
+                 <div className={style.position__block}>
+                    <div className={style.position__button}>
+                      {isTrue? 
+                      <button className={style.button__content} onClick = {removeUser(info)}>Удалить из изброного</button>:
+                      <button className={style.button__content} onClick = {addUser(info)}>Добавить в избраное</button>}
+                   </div>
+                  </div>      
               </div>
             ))
           )

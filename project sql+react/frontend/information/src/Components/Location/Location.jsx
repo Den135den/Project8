@@ -68,11 +68,12 @@ function Location() {
           onChange={(e) => dispatch(setOldState(e.target.value))}
         />
         <div>
+        <button onClick={handleCreateNewState}>Create New State</button>
           {stateBD.map(({id, value})=><div key={id}>{value}</div>)}
         </div>
+
         <div>{newState}</div>
-        <br />
-        <button onClick={handleCreateNewState}>Create New State</button>
+      
       </div>
     </div>
   );

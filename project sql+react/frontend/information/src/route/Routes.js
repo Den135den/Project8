@@ -28,6 +28,7 @@ export const routes = [
     path: '/favourite',
     element: (<Favourite/>)
     },
+    
     {
     id: 5,
     path: '*',
@@ -47,11 +48,7 @@ export const link = [
         to:'/people/1',
         value:'People',
     },
-    {
-        id:3,
-        to:'/favourite',
-        value:'Favourite',
-    },
-  
+   
+
      
 ]

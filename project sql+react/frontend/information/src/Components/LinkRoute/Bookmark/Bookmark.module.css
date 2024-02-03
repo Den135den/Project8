@@ -1,0 +1,13 @@
+.right_align_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+}
+
+.count{
+    color: #fff;
+    position: absolute;
+    top: 6px;
+    left: 30px;
+}

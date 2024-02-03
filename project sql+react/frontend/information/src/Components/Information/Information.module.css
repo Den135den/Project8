@@ -23,6 +23,48 @@
     left: 446px;
 }
 
+
+/* .position__button{
+   
+    display: flex;
+    background-color: red;
+    width: 150px;
+    margin: 0 auto;
+} */
+
+
+.position__block{
+  
+    position: absolute;
+    top: 500px;
+    left: 175px;
+}
+
+.position__button{
+    display: flex;
+    justify-content: center;
+}
+
+.button__content{
+    width: 180px;
+    height: 40px;
+    border-radius: 30px;
+    color: blueviolet;
+    text-decoration: blueviolet  underline;
+    border:blueviolet 2px solid;
+    background-color: black;
+    cursor: pointer;
+}
+
+
+.button__content:hover{
+   color: red;
+   border: red 2px solid;
+   text-decoration: red  underline;
+}
+
+
+
 @media screen and (max-width: 720px) {
     .info__container{
         width: 100%;
