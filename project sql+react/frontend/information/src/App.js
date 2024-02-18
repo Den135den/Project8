@@ -1,6 +1,9 @@
 import React from "react";
 import './index.css'
 import LinkRoute from "./Components/LinkRoute/LinkRoute";
+import { Context } from "./context/Context";
+import { ContextPeople } from "./context/ContextPeople";
+
 
 
 
@@ -8,7 +11,13 @@ import LinkRoute from "./Components/LinkRoute/LinkRoute";
 function App() {
   return (
     <>
-    <LinkRoute/>
+    <Context>
+  <ContextPeople>
+    <LinkRoute />
+  </ContextPeople>
+</Context>
+
+  
     </>
 )
 }

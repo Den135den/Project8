@@ -45,7 +45,7 @@
     justify-content: center;
 }
 
-.button__content{
+.button__contentBlack{
     width: 180px;
     height: 40px;
     border-radius: 30px;
@@ -56,14 +56,27 @@
     cursor: pointer;
 }
 
-
-.button__content:hover{
+.button__contentBlack:hover{
    color: red;
    border: red 2px solid;
    text-decoration: red  underline;
 }
 
-
+.button__contentWhite{
+    width: 180px;
+    height: 40px;
+    border-radius: 30px;
+    color: blueviolet;
+    text-decoration: blueviolet  underline;
+    border:blueviolet 2px solid;
+    background-color: #fff;
+    cursor: pointer;
+}
+.button__contentWhite:hover{
+    color: red;
+    border: red 2px solid;
+    text-decoration: red  underline;
+ }
 
 @media screen and (max-width: 720px) {
     .info__container{

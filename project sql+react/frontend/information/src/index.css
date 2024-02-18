@@ -1,5 +1,6 @@
 :root{
-  
+
+  --white-background: white;
   --color-black: #10100e;
   --margin-padding: 10px;
 }

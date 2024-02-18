@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./ButtonBackClick.module.css"
 import { Link} from "react-router-dom";
 import img from '../../img/clickBack.svg'
 import PropTypes from 'prop-types';
+import { BackgroundContext } from "../../context/Context";
+
 
 function ButtonBackClick(props){
+
+  const Theme = useContext(BackgroundContext)
+
   return(
-        <div className={style.block__click}> 
+        <div className={Theme.background === 'white'? style.block__clickBlack:style.block__clickWhite}> 
         <img src={img} alt="img" width={'15px'}/>
           <Link
         onClick={props.onClicking}

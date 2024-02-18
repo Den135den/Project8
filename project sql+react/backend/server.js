@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const mysql = require('mysql2/promise'); // Use the promise version
+const mysql = require('mysql2/promise'); 
 const fs = require('fs');
 const { error } = require('console');
 
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 const connection = mysql.createPool({
     user: 'Den135',
@@ -127,14 +127,13 @@ app.get('/people/:id1', async function (req, res) {
           return;
         }
     
-        // ключі
+        
         let key = `${valueID1}-${valueID2}`;
     
         coordinates[key] = query;
       }
     }
-    
-    // Припускаючи, що id1 та id2 визначені десь
+   
     const query = coordinates[`${id1}-${id2}`];
     
     if (!query) {
@@ -190,6 +189,90 @@ app.get('/getData', async function(req,res){
 
 })
 
+ app.post('/favouritePost', async function (req, res) {
+  const { request: info } = req.body;
+
+  // Assuming `info` is an object with properties id, name, and img
+  const query = 'INSERT INTO users4 (id, img, name) VALUES (?, ?, ?)';
+  
+  // Використовуйте info.img безпосередньо як дані для зображення
+  const imageBuffer = Buffer.from(info.img.data);
+  const values = [info.id, imageBuffer, info.name];
+  
+
+  try {
+    const request = await connection.query(query, values);
+    res.status(200).json(request);
+  } catch (error) {
+    console.error('Error inserting data into the database:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+app.get('/favouriteGet', async function (req, res) {
+  
+  try{
+    const [request] = await connection.query('SELECT * FROM users4')
+        res.status(200).json(request)
+    
+   }
+ 
+   catch{
+       res.status(500).json('Data is not fined')
+   }
+})
+
+
+app.delete('/favouriteDelete', async function (req, res) {
+  const { request: info } = req.body;
+
+  try {
+    const [request] = await connection.query('DELETE FROM users4 WHERE id = ?', [info.id]);
+    res.status(200).json(request);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json('Data is not found or deletion failed');
+  }
+});
+
+
+
+app.delete('/favouriteDelete2', async function (req, res) {
+  const {id} = req.body;
+
+  try {
+    const [request] = await connection.query('DELETE FROM users4 WHERE id = ?', [id]);
+    res.status(200).json(request);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json('Data is not found or deletion failed');
+  }
+});
+
+
+
+app.get('/users', async (req, res) => {
+  try {
+      const searchTerm = req.query.search;
+      const query = `
+   SELECT * FROM (
+      SELECT * FROM  users 
+      UNION
+      SELECT * FROM users2
+    ) AS combi_users 
+    WHERE name LIKE '%${searchTerm}%'  
+`;
+
+      const [results] = await connection.query(query);
+      res.json(results); // Результати розташовані у першому елементі масиву
+  } catch (error) {
+      console.error('Помилка отримання даних з бази даних:', error);
+      res.status(500).send('Помилка отримання даних з бази даних');
+  }
+});
+
 
 // app.get('/people/:id', async function(req, res) {
 //     try {
@@ -217,8 +300,6 @@ app.get('/getData', async function(req,res){
 // });
 
 
-
-
 // app.get('/people/:id', async function(req, res) {
 //     try {
 //         let id = req.params.id;
@@ -237,9 +318,6 @@ app.get('/getData', async function(req,res){
 // });
 
 
-
-
-
 // app.get('/people', async (req, res) => {
 //     try {
 //         const query1 = 'SELECT * FROM users2';
@@ -255,19 +333,6 @@ app.get('/getData', async function(req,res){
 //         res.status(500).json({ error: 'Internal server error' });
 //     }
 // });
-
-
-
-
-
-        
-
-
-
-
-
-
-
 
 // app.post('/people', async function (req, res) {
 //     try {

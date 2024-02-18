@@ -3,9 +3,12 @@ import Location from "../Components/Location/Location";
 import NotFound from "../Components/NotFound/NotFound";
 import Information from "../Components/Information/Information";
 import Favourite from "../Components/Favourite/Favourite";
+import Search from "../Components/Search/Search";
 
 
 
+
+ 
 export const routes = [
     {
     id:1,
@@ -27,10 +30,9 @@ export const routes = [
     id: 4,
     path: '/favourite',
     element: (<Favourite/>)
-    },
-    
+    },  
     {
-    id: 5,
+    id: 6,
     path: '*',
     element: (<NotFound/>)
     },
@@ -50,5 +52,10 @@ export const link = [
     },
    
 
+   
+
      
 ]
+
+
+

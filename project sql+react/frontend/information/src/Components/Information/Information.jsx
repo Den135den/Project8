@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState, Suspense } from "react";
+import React, { lazy, useEffect, useState, Suspense, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import style from './Information.module.css'
 import { URL_PEOPLE_ID } from "../../constants/const";
@@ -8,6 +8,8 @@ import { useDispatch, useSelector} from "react-redux";
 import { add, remove } from "../../redux/action/action";
 import yellow from './img/yellow.svg'
 import white from './img/white.svg'
+import black from './img/black.svg'
+import { BackgroundContext } from "../../context/Context";
 
 const DataInfo = lazy(()=>import('./Lazy/DataInfo'))
 
@@ -16,7 +18,7 @@ const DataInfo = lazy(()=>import('./Lazy/DataInfo'))
 function Information() {
 
   const selector = useSelector(state=>state.data);
-
+  const Theme = useContext(BackgroundContext)
 
 // const [isTrue, SetIsTrue] = useState(false)
 const [dateInfo, setDateInfo] = useState([])
@@ -30,10 +32,43 @@ const [errorInfo, setErrorInfo] = useState(null)
 
   const navigate = useNavigate();
  
+  const addUser = (info) => () => {
+  
+    dispatch(add(info));
+  
+    fetch('http://localhost:5000/favouritePost', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ request: info }),
+    })
+      .then((response) => response.json())
+      .then((data) =>data)
+      .catch((error) => console.error('Error saving data on server:', error));
 
-const addUser = (info) => () => dispatch(add({id: info.id, name: info.name}));
+  };
+  
 
-const removeUser = (info) => () => dispatch(remove({id: info.id, name: info.name}));
+const removeUser = (info) => () => {
+
+  dispatch(remove({id: info.id, name: info.name}));
+
+  
+  fetch('http://localhost:5000/favouriteDelete', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ request: info }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log('Data saved on server:', data))
+      .catch((error) => console.error('Error saving data on server:', error));
+}
+
+
+
 
 
 function onClicking(e){
@@ -90,7 +125,7 @@ function req(url){
                   />
             
                   <img
-                    src={isTrue ? yellow : white}
+                    src={isTrue ? yellow :  Theme.background === 'white'? white: black}
                     onClick={() => (isTrue ? removeUser(info)() : addUser(info)())}
                     className={style.img}
                    alt="img"
@@ -106,8 +141,8 @@ function req(url){
                  <div className={style.position__block}>
                     <div className={style.position__button}>
                       {isTrue? 
-                      <button className={style.button__content} onClick = {removeUser(info)}>Удалить из изброного</button>:
-                      <button className={style.button__content} onClick = {addUser(info)}>Добавить в избраное</button>}
+                      <button className={Theme.background === 'white'? style.button__contentBlack : style.button__contentWhite} onClick = {removeUser(info)}>Удалить из изброного</button>:
+                      <button className={Theme.background === 'white'? style.button__contentBlack : style.button__contentWhite} onClick = {addUser(info)}>Добавить в избраное</button>}
                    </div>
                   </div>      
               </div>

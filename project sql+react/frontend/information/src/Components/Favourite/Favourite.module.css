@@ -1,0 +1,39 @@
+.block__favourite {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.block__content {
+   width: 500px;
+ 
+   padding-top: 30px;
+   margin-bottom: 30px;
+ 
+   margin-top: 30px;
+   text-align: center;
+}
+
+.block__name{
+  margin-top: 30px;
+  margin-bottom: 50px;
+  color: red;
+}
+
+.button__content{
+  width: 180px;
+  height: 40px;
+  border-radius: 30px;
+  color: blueviolet;
+  text-decoration: blueviolet  underline;
+  border:blueviolet 2px solid;
+  background-color: black;
+  cursor: pointer;
+}
+
+.button__content:hover{
+  color: red;
+  border: red 2px solid;
+  text-decoration: red  underline;
+}

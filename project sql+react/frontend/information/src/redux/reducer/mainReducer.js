@@ -1,3 +1,4 @@
+import { getItmLocalStorage } from "../../localStorage/mainLocalStorage";
 
 
 // reducers.js
@@ -20,11 +21,12 @@ export const inputReducer = (state = initialState, action) => {
         return state;
     }
   };
-
-  const masData = {
-    items: []
-  };
+ 
   
+// const masData = {
+//   items: [], 
+// };
+ const masData = getItmLocalStorage('humans');
 
 
 

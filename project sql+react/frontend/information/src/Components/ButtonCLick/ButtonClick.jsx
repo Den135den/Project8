@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./ButtonClick.module.css"
 import { Link } from "react-router-dom";
 import  PropTypes from "prop-types";
+import { PeopleContext } from "../../context/ContextPeople";
 
 
-function ButtonClick(props){
+function ButtonClick(){
+
+  const {increment, decrement} = useContext(PeopleContext)
+
+
   return(
        <>
        <div className={style.container__button}>
-         <Link to={props.increment}>
+         <Link to={increment}>
         <button className={style.container__position}>
         Two Page
         </button>
          </Link>
 
-         <Link to={props.decrement}>
+         <Link to={decrement}>
         <button  className={style.container__position}>One Page</button>
          </Link>
        </div>

@@ -1,0 +1,10 @@
+.whiteBackground{
+    background-color: var(--color-black);
+}
+.darkBackground{
+    background-color: var(--white-background);
+}
+.img{
+    width: 30px;
+    cursor: pointer;
+}
