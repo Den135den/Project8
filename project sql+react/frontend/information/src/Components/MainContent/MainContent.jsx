@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { PeopleContext } from "../../context/ContextPeople";
 import TestError from '../TestError/TestError';
 import Content from '../Content/Content';
-import Search from '../Search/Search';
 import { useParams } from "react-router-dom";
 import { URL_API, URL_UNIQ } from "../../constants/const";
 import { req } from "./Fetch";
@@ -22,8 +21,8 @@ function MainContent() {
       .then((result) => {
         if (result) {
           setData(result);
-          setOriginalData(result); // Зберегти оригінальні дані
           setError(false);
+          setOriginalData(result)
           setIncrement(URL_UNIQ + INCREMENT);
           setDecrement(URL_UNIQ + DECREMENT);
         }

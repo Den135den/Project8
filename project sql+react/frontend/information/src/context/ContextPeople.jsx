@@ -1,10 +1,10 @@
 import React, { useState, createContext } from "react";
 
-// Оголошення контексту поза компонентом ContextPeople
+
 const PeopleContext = createContext();
 
 function ContextPeople({ children }) {
-  // Використання useState для зберігання стану
+ 
   const [data, setData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
 
@@ -12,7 +12,7 @@ function ContextPeople({ children }) {
   const [decrement, setDecrement] = useState(1);
 
   return (
-    // Передача значень через контекст
+   
     <PeopleContext.Provider
       value={{
         data,
@@ -20,7 +20,7 @@ function ContextPeople({ children }) {
         increment,
         setIncrement,
         decrement,
-        originalData, // Додано originalData до значень контексту
+        originalData, 
         setOriginalData,
         setDecrement,
       }}

@@ -1,0 +1,29 @@
+.input__block {
+    display: inline-flex;
+    margin-left: 20px;
+    position: relative; /* Додайте позиціонування relative */
+}
+
+.input__content {
+    width: 160px;
+    padding: 5px;
+    padding-right: calc(30px); 
+    border-radius: 10px;
+}
+
+.input__content:focus {
+    border: 2px solid;
+    border-color: red; 
+    outline: none; 
+}
+
+
+
+.clear {
+    padding-left: 10px;
+    position: absolute;
+    top: 0;
+    right: 0; 
+    width: 30px;
+    cursor: pointer;
+}

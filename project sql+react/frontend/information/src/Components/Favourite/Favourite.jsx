@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./Favourite.module.css";
 import { useDispatch } from "react-redux";
 import { remove } from "../../redux/action/action";
+import { BackgroundContext } from "../../context/Context";
 
 function Favourite() {
   const [items, setFavourite] = useState([]);
+  const Theme = useContext(BackgroundContext);
   const [itemsLength, setFavouriteLength] = useState(true); 
   const dispatch = useDispatch();
 
@@ -68,7 +70,7 @@ function Favourite() {
         ))}
       </div>
     ) : (
-      <h1 style={{color:'red'}}>Користувачів не знайдено</h1>
+      <h1 style={{color: Theme.background ==='white'? 'white': 'black'}}>Користувачів не знайдено</h1>
     )}
     </>
   );
