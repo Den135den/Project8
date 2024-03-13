@@ -11,7 +11,7 @@ import { ContextPeople } from "./context/ContextPeople";
 function App() {
   return (
     <>
-    <Context>
+<Context>
   <ContextPeople>
     <LinkRoute />
   </ContextPeople>

@@ -23,10 +23,10 @@ export const inputReducer = (state = initialState, action) => {
   };
  
   
-// const masData = {
-//   items: [], 
-// };
- const masData = getItmLocalStorage('humans');
+const masData = {
+  items: [], 
+};
+//  const masData = getItmLocalStorage('humans');
 
 
 

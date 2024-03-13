@@ -20,7 +20,7 @@ function Information() {
   const selector = useSelector(state=>state.data);
   const Theme = useContext(BackgroundContext)
 
-// const [isTrue, SetIsTrue] = useState(false)
+
 const [dateInfo, setDateInfo] = useState([])
 const [isTrue, setIsTrue] = useState(null)
 const [errorInfo, setErrorInfo] = useState(null)
@@ -140,6 +140,8 @@ function req(url){
 
                  <div className={style.position__block}>
                     <div className={style.position__button}>
+
+                      
                       {isTrue? 
                       <button className={Theme.background === 'white'? style.button__contentBlack : style.button__contentWhite} onClick = {removeUser(info)}>Удалить из изброного</button>:
                       <button className={Theme.background === 'white'? style.button__contentBlack : style.button__contentWhite} onClick = {addUser(info)}>Добавить в избраное</button>}

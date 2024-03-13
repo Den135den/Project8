@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import style from "./ButtonBackClick.module.css"
 import { Link} from "react-router-dom";
 import img from '../../img/clickBack.svg'
-import PropTypes from 'prop-types';
 import { BackgroundContext } from "../../context/Context";
 
 
@@ -22,9 +21,6 @@ function ButtonBackClick(props){
         </div>
   )
 }
-ButtonBackClick.propTypes = {
-    onClicking:PropTypes.number
-    
-  }
+
 
 export default ButtonBackClick;

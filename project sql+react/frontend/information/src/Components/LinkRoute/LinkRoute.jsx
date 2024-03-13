@@ -44,7 +44,7 @@ function LinkRoute() {
 
   useEffect(() => {
     const handlePathChange = () => {
-      handleNavLinkClick(window.location.pathname); // Отримати поточний шлях
+      handleNavLinkClick(window.location.pathname);
     };
     handlePathChange();
   }, [Theme.background, handleNavLinkClick]); 
